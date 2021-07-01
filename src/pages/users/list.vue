@@ -5,9 +5,7 @@
       :data="listUsers"
       row-key="name"
       color="secondary"
-      :pagination.sync="pagination"
       ref="table"
-      :rows-per-page-options="rowsOptions"
     >
       <template slot="top-right" slot-scope="props">
         <AddUser  :propsUserId="userId" v-on:resetId="userId = ''" />
@@ -30,7 +28,6 @@
         </q-tr>
       </template>
     </q-table>
-    {{ userId }}
   </q-page>
 </template>
 
@@ -43,14 +40,6 @@ export default {
     return {
       userId: '',
       actionSubmit: '',
-      rowsOptions: [20, 50, 100, 5000],
-      pagination: {
-        page: 1,
-        rowsNumber: 20,
-        rowsPerPage: 20,
-        direction: 'asc',
-        sortBy: null
-      },
       columns: [
         {
           name: 'id',

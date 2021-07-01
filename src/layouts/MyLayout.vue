@@ -20,7 +20,9 @@
           Truckvel
           <div slot="subtitle">Truckvel Peças e Serviços</div>
         </q-toolbar-title>
+
       </q-toolbar>
+
     </q-layout-header>
 
     <q-layout-drawer
@@ -43,6 +45,14 @@
           <q-item-side icon="far fa-user" />
           <q-item-main class="white-color" label="Usuários" sublabel="exibe os usuários" />
         </q-item>
+        <q-item to="/usuarios/login">
+          <q-item-side icon="far fa-user" />
+          <q-item-main class="white-color" label="Login" sublabel="logar no sistema" />
+        </q-item>
+        <q-item @click.native="logout()">
+          <q-item-side icon="far fa-user" />
+          <q-item-main class="white-color" label="Logout" sublabel="sair do sistema" />
+        </q-item>
       </q-list>
     </q-layout-drawer>
 
@@ -63,7 +73,20 @@ export default {
     }
   },
   methods: {
-    openURL
+    openURL,
+    logout () {
+      localStorage.removeItem('token')
+      this.$q.notify({
+        message: `Seu usuário foi deslogado.`,
+        timeout: 4000,
+        type: 'positive',
+        color: 'positive',
+        textColor: 'black',
+        icon: 'fas fa-minus-circle',
+        detail: `Verifique o Local Storage de seu navegador.`,
+        position: 'top-right'
+      })
+    }
   }
 }
 </script>

@@ -7,12 +7,18 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') }
     ]
   },
-  
   {
     path: '/usuarios/lista',
     component: () => import('layouts/MyLayout.vue'),
     children: [
       { path: '', component: () => import('pages/users/list') }
+    ]
+  },
+  {
+    path: '/usuarios/login',
+    component: () => import('layouts/MyLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/users/login') }
     ]
   }
 ]
