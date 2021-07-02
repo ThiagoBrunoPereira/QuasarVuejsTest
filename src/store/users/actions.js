@@ -12,16 +12,7 @@ export const list = (state) => {
 export const add = (state, data) => {
   return new Promise((resolve, reject) => {
     window.axios.post('api/users',  qs.stringify(data)).then((response) => {
-      console.log('Registro Adicionado', response)
-      resolve()
-    })
-  })
-}
-
-export const edit = (state, id) => {
-  return new Promise((resolve, reject) => {
-    window.axios.get('api/users/' + id ).then((response) => {
-      state.commit('setEdit', response.data.data || [])
+      state.commit('setAdduser', response.data || [])
       resolve()
     })
   })
@@ -30,7 +21,7 @@ export const edit = (state, id) => {
 export const put = (state, [ data, id ]) => {
   return new Promise((resolve, reject) => {
     window.axios.post('api/v1/customers/' + id + '.json', qs.stringify(data)).then((response) => {
-      console.log('response', response)
+      state.commit('setPut', data || [])
       resolve()
     })
   })

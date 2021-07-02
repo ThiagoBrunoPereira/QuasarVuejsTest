@@ -9,11 +9,10 @@
               flat
               round
               dense
-              v-close-overlay
               icon="keyboard_arrow_left"
             />
             <q-toolbar-title>
-              {{ propsUserId > 0 ? 'Editar usuário' : 'Adicionar usuário' }}
+              {{ propsUserEdit > 0 ? 'Editar usuário' : 'Adicionar usuário' }}
             </q-toolbar-title>
           </q-toolbar>
 
@@ -46,16 +45,16 @@
 <script>
 
 export default {
-  props: ['propsUserId'],
+  props: ['propsUserEdit'],
   data () {
     return {
       modalOpen: false
     }
   },
   watch: {
-    propsUserId () {
-      if (this.propsUserId > 0) {
-        this.$store.dispatch('users/edit', this.propsUserId)
+    propsUserEdit () {
+      if (this.propsUserEdit.id > 0) {
+        this.$store.commit('users/setEdit', this.propsUserEdit)
         this.modalOpen = true
       }
     }
@@ -65,17 +64,18 @@ export default {
       let payload = {
         first_name: this.user.first_name,
         last_name: this.user.last_name,
-        email: this.user.email
+        email: this.user.email,
+        avatar: 'https://reqres.in/img/faces/2-image.jpg',
+        __index: this.user.__index
       }
-
-      if (this.propsUserId > 0) {
-        this.$store.dispatch('users/put', [ payload, this.propsUserId ]).then(() => {
-          this.$store.dispatch('users/list')
+      if (this.propsUserEdit.id > 0) {
+        this.$store.dispatch('users/put', [ this.user, this.propsUserEdit.id ]).then(() => {
+          this.$store.commit('users/setList', [])
           this.resetData()
         })
       } else {
         this.$store.dispatch('users/add', payload).then(() => {
-          this.$store.dispatch('users/list')
+          this.$store.commit('users/setList', [])
           this.resetData()
         })
       }

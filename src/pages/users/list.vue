@@ -8,7 +8,7 @@
       ref="table"
     >
       <template slot="top-right" slot-scope="props">
-        <AddUser  :propsUserId="userId" v-on:resetId="userId = ''" />
+        <AddUser  :propsUserEdit="userEdit" v-on:resetId="userEdit = ''" />
       </template>
       <template slot="body" slot-scope="props">
         <q-tr :props="props" @click.native="viewActions(props.row)" class="cursor-pointer">
@@ -38,7 +38,7 @@ export default {
   components: { AddUser },
   data () {
     return {
-      userId: '',
+      userEdit: '',
       actionSubmit: '',
       columns: [
         {
@@ -72,7 +72,6 @@ export default {
       ]
     }
   },
-
   methods: {
     viewActions (row) {
       let self = this
@@ -85,7 +84,10 @@ export default {
             color: 'negative',
             icon: 'fas fa-minus-circle',
             handler () {
-             console.log('Ação de exclusão.')
+              let oldList = JSON.parse(localStorage.getItem('listUsers')) || []
+              oldList.splice(row.__index, 1)
+              localStorage.setItem('listUsers', JSON.stringify(oldList))
+              self.$store.commit('users/setList', [])
             }
           },
           {
@@ -93,7 +95,7 @@ export default {
             color: 'primary',
             icon: 'edit',
             handler () {
-              self.userId = row.id
+              self.userEdit = row
             }
           }
         ]

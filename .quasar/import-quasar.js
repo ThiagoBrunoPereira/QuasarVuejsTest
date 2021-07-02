@@ -11,7 +11,7 @@
 
 import Vue from 'vue'
 
-import {Quasar,QLayout,QLayoutHeader,QLayoutDrawer,QPageContainer,QPage,QToolbar,QToolbarTitle,QBtn,QIcon,QList,QListHeader,QItem,QItemMain,QItemSide,QTable,QTr,QTd,QTh,QField,QInput,QModal,QItemTile,QItemSeparator,Ripple,Notify,ActionSheet,Loading,Dialog} from 'quasar'
+import {Quasar,QLayout,QLayoutHeader,QLayoutDrawer,QPageContainer,QPage,QToolbar,QToolbarTitle,QBtn,QIcon,QList,QListHeader,QItem,QItemMain,QItemSide,QTable,QTr,QTd,QTh,QField,QInput,QModal,QItemTile,QItemSeparator,QModalLayout,Ripple,Notify,ActionSheet,Loading,Dialog} from 'quasar'
 
 
-Vue.use(Quasar, { config: {},components: {QLayout,QLayoutHeader,QLayoutDrawer,QPageContainer,QPage,QToolbar,QToolbarTitle,QBtn,QIcon,QList,QListHeader,QItem,QItemMain,QItemSide,QTable,QTr,QTd,QTh,QField,QInput,QModal,QItemTile,QItemSeparator},directives: {Ripple},plugins: {Notify,ActionSheet,Loading,Dialog} })
+Vue.use(Quasar, { config: {},components: {QLayout,QLayoutHeader,QLayoutDrawer,QPageContainer,QPage,QToolbar,QToolbarTitle,QBtn,QIcon,QList,QListHeader,QItem,QItemMain,QItemSide,QTable,QTr,QTd,QTh,QField,QInput,QModal,QItemTile,QItemSeparator,QModalLayout},directives: {Ripple},plugins: {Notify,ActionSheet,Loading,Dialog} })
